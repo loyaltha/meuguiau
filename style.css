@@ -50,7 +50,7 @@ header {
 .nav-title {
   font-size: 1.4rem;
   font-weight: bold;
-  color: #1e3a8a; /* Azul elegante */
+  color: #1e3a8a;
 }
 
 .nav-links {
@@ -133,6 +133,7 @@ header {
   padding: 1.2rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
   transition: transform 0.2s ease;
+  text-align: center;
 }
 
 .card:hover {
@@ -196,7 +197,7 @@ header {
 }
 
 #contato a {
-  color: inherit; /* Mantém a cor do texto do parágrafo */
+  color: inherit;
   font-weight: 600;
   text-decoration: none;
   border-bottom: 1px dashed #999;
@@ -252,6 +253,8 @@ header {
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  display: block;
+  margin: 1.5rem auto 0 auto;
 }
 
 .form-contato button:hover {
@@ -265,4 +268,87 @@ footer {
   background-color: #e5e7eb;
   color: #374151;
   font-size: 0.9rem;
+}
+
+/* Menu responsivo e ajustes mobile */
+.menu-toggle {
+  display: none;
+  font-size: 1.8rem;
+  background: none;
+  border: none;
+  color: #1e3a8a;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .nav-container {
+    flex-direction: row-reverse;
+    justify-content: space-between;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  nav {
+    order: 2;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    display: none;
+    justify-content: center;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  }
+
+  nav.active {
+    display: flex;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem 0;
+    width: 100%;
+  }
+
+  .nav-links li {
+    width: 100%;
+  }
+
+  .nav-links li a {
+    font-size: 1.1rem;
+  }
+
+  .logo {
+    height: 60px;
+  }
+
+  .filtro {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .intro h2 {
+    font-size: 1.5rem;
+  }
+
+  .intro p,
+  #contato p {
+    font-size: 1rem;
+    padding: 0 1rem;
+  }
+
+  .lista {
+    padding: 0 1rem;
+  }
+
+  .card {
+    font-size: 0.95rem;
+    text-align: center;
+  }
 }
