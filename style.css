@@ -1,127 +1,268 @@
-body {
-	color: #1b1833;
-	text-align: center;
-	font-family: "Playwrite DE Grund", cursive;
-	padding: 0;
-	margin: 0;
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-.menu {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-	box-sizing: border-box;
-	height: 70%;
-    padding: 20px 20px;
-	margin: 0px 0px 20px 0px;
-    background-color: #0078f0;
-	border-radius: 5px;
-	color: #fff;
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f9fafb;
+  color: #333;
+  line-height: 1.6;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Header */
+header {
+  background-color: #ffffff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .logo {
-	width: 10%;
-	height: 10%;
+  height: 100px;
+  width: auto;
 }
 
-.menu-icon {
-    display: none;
-    font-size: 30px;
-    cursor: pointer;
+.nav-title {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #1e3a8a; /* Azul elegante */
 }
 
-#checkbox {
-    display: none;
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 1.2rem;
 }
 
-.lista-menu {
-    list-style: none;
-    display: flex;
-    flex-direction: row;
-    /*justify-content: center;
-    align-content: left;*/
-    margin: 0;
-    padding: 0;
-    font-size: 115%;
-    font-weight: 800;
+.nav-links li a {
+  color: #333;
+  font-weight: 500;
+  transition: color 0.3s;
 }
 
-.lista-menu li {
-    margin: 0 15px;
+.nav-links li a:hover {
+  color: #1e3a8a;
 }
 
-.lista-menu li a {
-    color: #333;
-    text-decoration: none;
-    padding: 5px 10px;
-    display: block;
+/* Seções gerais */
+.secao {
+  padding: 3rem 1rem;
 }
 
-.lista-menu li:hover {
-    text-decoration: underline;
+.container {
+  max-width: 1200px;
+  justify-items: center;
+  margin: 0 auto;
 }
 
-.login {
-    margin-left: 20%;
-    border: none;
-    border-radius: 10%;
-	background-color: #0078f0;
-	color: #fff;
-    width: 120px;
+/* Intro */
+.intro {
+  background-color: #e0edff;
+  text-align: center;
+  padding: 4rem 2rem;
 }
 
+.intro h2 {
+  font-size: 2rem;
+  color: #1e3a8a;
+  margin-bottom: 1rem;
+}
 
-/*adaptação para mobile*/
-@media screen and (max-width: 1000px) {
-	body, ul{
-		margin: 0;
-		padding: 0;
-		box-sizing: border-box;
-	}
+.intro p {
+  max-width: 700px;
+  margin: 0 auto;
+  font-size: 1.1rem;
+  color: #333;
+}
 
-    .menu{
-        border-radius: 0%;
-    }
+/* Filtro */
+.filtro {
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-weight: bold;
+  flex-wrap: wrap;
+}
 
-	.login {
-		display: none;
-	}
+.filtro select {
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
 
-	.logo {
-		width: 20%;
-		height: 20%;
-	}
+/* Lista de cards */
+.lista {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  margin: 0 auto;
+  padding: 0 10%;
+  gap: 1.5rem;
+}
 
-	.menu-icon{
-		display: flex;
-		position: absolute;
-		left: 95%;
-		top: 6%;
-		color: #fff;
-		font-size: 200%;
-	}
+/* Card */
+.card {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 1.2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease;
+}
 
-	ul.lista-menu{
-		padding-top: 25px;
-	}
+.card:hover {
+  transform: translateY(-4px);
+}
 
-	.lista-menu{
-		display: none;
-		position: absolute;
-		text-align: center;
-		width: 100%;
-		height: 100%;
-		left: 0;
-		top: 19%;
-		background: #0078f0;
-	}
+.card h3 {
+  font-size: 1.1rem;
+  color: #111827;
+  margin-bottom: 0.5rem;
+}
 
-	.lista-menu li{
-		padding-bottom: 30px;
-		border-bottom: 1px solid rgba(75,0,130, 0.16);
-	}
+.card p {
+  color: #6b7280;
+  font-size: 0.95rem;
+}
 
-	.checkbox:checked ~ .lista-menu{
-		display: block;
-	}
+/* Destaque (ex: depoimentos) */
+.destaque {
+  background-color: #f0f4f8;
+  text-align: center;
+}
+
+.destaque blockquote {
+  font-style: italic;
+  margin: 1rem auto;
+  max-width: 700px;
+  color: #374151;
+  position: relative;
+}
+
+/* Contato */
+#contato {
+  background-color: #f9f9f9;
+  padding: 4rem 1rem;
+}
+
+#contato h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #1e3a8a;
+  text-align: center;
+}
+
+#contato p {
+  color: #555;
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 1.5rem;
+  font-size: 1.05rem;
+}
+
+#contato .contato-info {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+#contato .contato-info p {
+  margin: 0.3rem 0;
+  color: #333;
+}
+
+#contato a {
+  color: inherit; /* Mantém a cor do texto do parágrafo */
+  font-weight: 600;
+  text-decoration: none;
+  border-bottom: 1px dashed #999;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+#contato a:hover {
+  color: #1e3a8a;
+  border-color: #1e3a8a;
+}
+
+/* Formulário de contato */
+.form-contato {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.form-contato div {
+  margin-bottom: 1rem;
+}
+
+.form-contato label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.form-contato input,
+.form-contato textarea {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  transition: border-color 0.3s;
+}
+
+.form-contato input:focus,
+.form-contato textarea:focus {
+  border-color: #1e3a8a;
+  outline: none;
+}
+
+.form-contato button {
+  background-color: #1e3a8a;
+  color: #fff;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.form-contato button:hover {
+  background-color: #162d6b;
+}
+
+/* Rodapé */
+footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  background-color: #e5e7eb;
+  color: #374151;
+  font-size: 0.9rem;
 }
