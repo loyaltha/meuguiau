@@ -1,40 +1,109 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="logo.png"> <!--favicon-->
-    <link href="" rel="stylesheet"> <!--fonte escolhida-->
-    <link rel="stylesheet" type="text/css" href="style.css" />
-    <script src="script.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Meu Guia U</title>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <header class="menu">
-        <img class="logo" src="logo.png" alt="logo do site">
-        <!--<a href="index.html"><img class="logo" src="logo.png" alt="voltar para home"></a>-->
-		<nav>
-			<input type="checkbox" id="checkbox" class="checkbox">
-			<label for="checkbox" class="menu-icon">&#9776;</label>
-			<ul class="lista-menu">
-				<li><a href=""></a>Início</li>
-				<li><a href=""></a>Sobre</li>
-				<li><a href=""></a>Busca</li>
-				<li><a href=""></a>Favoritos</li>
-				<li><a href=""></a>Perfil</li>
-				<li><a href=""></a>Contato</li>
-				<li><a href=""></a>FAQ</li>
-			</ul>
-            <button class="login">Login/cadastre-se</button>
-		</nav>
-	</header>
+    <!-- Header -->
+    <header>
+        <div class="container nav-container">
+            <div class="nav-logo">
+                <img src="logo2.png" alt="Logo Meu Guia U" class="logo" />
+                <!--<span class="nav-title">Meu Guia U</span>-->
+            </div>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#topo">Início</a></li>
+                    <li><a href="#lista">Locais</a></li>
+                    <li><a href="#depoimentos">Depoimentos</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
 
-    <main>
+    <!-- Topo -->
+    <section id="topo" class="intro">
+        <h2>Chegou agora? O Meu Guia U te mostra por onde começar</h2>
+        <p>
+            Descubra os melhores lugares da cidade para comer, se vestir, economizar e resolver a vida do dia a dia.
+            O <strong>Meu Guia U</strong> foi feito especialmente para estudantes, novatos e moradores que buscam
+            praticidade e boas recomendações.
+            Filtre por categoria e encontre rapidamente os serviços e comércios mais <strong>úteis</strong> de Uberaba.
+        </p>
+    </section>
 
-    </main>
+    <!-- Lista -->
+    <section id="lista" class="secao">
+        <div class="container">
+            <h2>Locais recomendados</h2>
+            <div class="filtro">
+                <label for="filtro">Filtrar por categoria:</label>
+                <select id="filtro" onchange="filtrarEstabelecimentos()">
+                    <option value="todos">Todos</option>
+                    <option value="Alimentação">Alimentação</option>
+                    <option value="Roupas">Roupas</option>
+                    <option value="Mercado">Mercado</option>
+                    <option value="Beleza">Beleza</option>
+                    <option value="Artigos Diversos">Artigos Diversos</option>
+                    <option value="Turismo">Turismo</option>
+                </select>
+            </div>
+        </div>
+        <!-- Aqui está o novo ID -->
+        <div class="lista" id="cards"></div>
+    </section>
 
+    <!-- Depoimentos -->
+    <section id="depoimentos" class="secao destaque">
+        <div class="container">
+            <h2>Depoimentos</h2>
+            <blockquote>“Cheguei em Uberaba sem conhecer nada. Esse site salvou meus primeiros dias!” &mdash; Larissa,
+                UFTM</blockquote>
+            <blockquote>“É muito prático! Já achei restaurante, mercado e até salão aqui perto.” &mdash; Pedro, UNIUBE
+            </blockquote>
+        </div>
+    </section>
+
+    <!-- Contato -->
+    <section id="contato" class="secao">
+        <div class="container">
+            <h2>Fale Conosco</h2>
+            <p>Tem dúvidas, sugestões ou precisa de ajuda? Nossa equipe está pronta para atender você.</p>
+            <div class="contato-info">
+                <p><strong>Email:</strong> <a href="mailto:contato@meuguiau.com">contato@meuguiau.com</a></p>
+                <p><strong>Horário de atendimento:</strong> Segunda a sexta, das 9h às 18h</p>
+            </div>
+
+            <form class="form-contato" action="mailto:contato@meuguiau.com" method="POST" enctype="text/plain">
+                <div>
+                    <label for="nome">Nome:</label>
+                    <input type="text" id="nome" name="nome" required />
+                </div>
+                <div>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required />
+                </div>
+                <div>
+                    <label for="mensagem">Mensagem:</label>
+                    <textarea id="mensagem" name="mensagem" rows="5" required></textarea>
+                </div>
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Rodapé -->
     <footer>
-
+        &copy; 2025 Meu Guia U. Todos os direitos reservados.
     </footer>
+
+    <script src="script.js"></script>
 </body>
+
 </html>
