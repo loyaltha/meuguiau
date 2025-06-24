@@ -90,3 +90,9 @@ function filtrarEstabelecimentos() {
 
 // Exibe todos ao carregar a página
 window.onload = () => exibirEstabelecimentos(estabelecimentos);
+
+// Alterna menu mobile
+function toggleMenu() {
+  const nav = document.querySelector("nav");
+  nav.classList.toggle("active");
+}
