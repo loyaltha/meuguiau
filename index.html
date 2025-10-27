@@ -1,112 +1,197 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Meu Guia U</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="logo.png">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous" defer></script>
+    <link rel="stylesheet" href="style.css"> 
+
+    <script type="module" src="js/firebase-config.js" defer></script>
+    <script type="module" src="js/auth-handler.js" defer></script>
+    <script type="module" src="js/script.js" defer></script>
 </head>
-
 <body>
-    <!-- Header -->
-    <header>
-        <div class="container nav-container">
-            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    <header class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top py-3">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-            <div class="nav-logo">
+            <a class="navbar-brand" href="index.html">
                 <img src="logo2.png" alt="Logo Meu Guia U" class="logo" />
-            </div>
-            <!--<span class="nav-title">Meu Guia U</span>-->
-            <nav>
-                <ul class="nav-links">
-                    <!-- Menu para mobile será ativado via classe -->
-                    <li><a href="#topo">Início</a></li>
-                    <li><a href="#lista">Locais</a></li>
-                    <li><a href="#depoimentos">Depoimentos</a></li>
-                    <li><a href="#contato">Contato</a></li>
+            </a>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#topo">Início</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#lista">Locais</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#depoimentos">Depoimentos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contato">Contato</a>
+                    </li>
                 </ul>
-            </nav>
+            </div>
+
+            <div class="nav-item ms-lg-3" id="auth-container">
+                        
+                <div id="logged-out-view" style="display: none;">
+                    <a href="acesso.html" class="btn btn-login">Fazer login</a>
+                </div>
+                
+                <div id="logged-in-view" class="dropdown profile-dropdown" style="display: none;">
+                    <a class="dropdown-toggle profile-icon" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        </a>
+                    <ul class="dropdown-menu dropdown-menu-end profile-dropdown-menu">
+                        <li>
+                            <div class="dropdown-header">
+                                <div id="user-name" class="user-name">Carregando...</div>
+                                <div id="user-email" class="user-email">...</div>
+                            </div>
+                        </li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Perfil</a></li>
+                        <li><a class="dropdown-item" href="#">Favoritos</a></li>
+                        <li><a class="dropdown-item" href="#">Mensagens</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item dropdown-item-danger" href="#" data-bs-toggle="modal" data-bs-target="#confirmDeleteModal">Excluir Conta</a></li>
+                        <li><a class="dropdown-item" href="#" id="logout-button">Sair</a></li>
+                    </ul>
+                </div>
+            </div>
+            
         </div>
     </header>
 
-    <!-- Topo -->
-    <section id="topo" class="intro">
-        <h2>Chegou agora? O Meu Guia U te mostra por onde começar</h2>
-        <p>
-            Descubra os melhores lugares da cidade para comer, se vestir, economizar e resolver a vida do dia a dia.
-            O <strong>Meu Guia U</strong> foi feito especialmente para estudantes, novatos e moradores que buscam
-            praticidade e boas recomendações.
-            Filtre por categoria e encontre rapidamente os serviços e comércios mais <strong>úteis</strong> de Uberaba.
-        </p>
-    </section>
-
-    <!-- Lista -->
-    <section id="lista" class="secao">
+    <section id="topo" class="py-5 text-center intro-bg">
         <div class="container">
-            <h2>Locais recomendados</h2>
-            <div class="filtro">
-                <label for="filtro">Filtrar por categoria:</label>
-                <select id="filtro" onchange="filtrarEstabelecimentos()">
-                    <option value="todos">Todos</option>
-                    <option value="Alimentação">Alimentação</option>
-                    <option value="Roupas">Roupas</option>
-                    <option value="Mercado">Mercado</option>
-                    <option value="Beleza">Beleza</option>
-                    <option value="Artigos Diversos">Artigos Diversos</option>
-                    <option value="Turismo">Turismo</option>
-                </select>
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <h2 class="h1 fw-bold text-primary">Chegou agora? O Meu Guia U te mostra por onde começar</h2>
+                    <p class="fs-5 mt-3">
+                        Descubra os melhores lugares da cidade para comer, se vestir, economizar e resolver a vida do dia a dia.
+                        O <strong>Meu Guia U</strong> foi feito especialmente para estudantes, novatos e moradores que buscam
+                        praticidade e boas recomendações.
+                    </p>
+                </div>
             </div>
         </div>
-        <!-- Aqui está o novo ID -->
-        <div class="lista" id="cards"></div>
     </section>
 
-    <!-- Depoimentos -->
-    <section id="depoimentos" class="secao destaque">
+    <section id="lista" class="py-5">
         <div class="container">
-            <h2>Depoimentos</h2>
-            <blockquote>“Cheguei em Uberaba sem conhecer nada. Esse site salvou meus primeiros dias!” &mdash; Larissa,
-                UFTM</blockquote>
-            <blockquote>“É muito prático! Já achei restaurante, mercado e até salão aqui perto.” &mdash; Pedro, UNIUBE
-            </blockquote>
-        </div>
-    </section>
-
-    <!-- Contato -->
-    <section id="contato" class="secao">
-        <div class="container">
-            <h2>Fale Conosco</h2>
-            <p>Tem dúvidas, sugestões ou precisa de ajuda? Nossa equipe está pronta para atender você.</p>
-            <div class="contato-info">
-                <p><strong>Email:</strong> <a href="mailto:contato@meuguiau.com">contato@meuguiau.com</a></p>
-                <p><strong>Horário de atendimento:</strong> Segunda a sexta, das 9h às 18h</p>
+            <h2 class="text-center fw-bold mb-4">Locais recomendados</h2>
+            
+            <div class="row justify-content-center mb-4">
+                <div class="col-lg-5">
+                    <div class="d-flex align-items-center">
+                        <label for="filtro" class="form-label mb-0 me-3 flex-shrink-0">Filtrar por:</label>
+                        <select id="filtro" class="form-select form-select-lg">
+                            <option value="todos" selected>Todos</option>
+                            <option value="Alimentação">Alimentação</option>
+                            <option value="Roupas">Roupas</option>
+                            <option value="Mercado">Mercado</option>
+                            <option value="Beleza">Beleza</option>
+                            <option value="Artigos Diversos">Artigos Diversos</option>
+                            <option value="Turismo">Turismo</option>
+                        </select>
+                    </div>
+                </div>
             </div>
-
-            <form class="form-contato" action="mailto:contato@meuguiau.com" method="POST" enctype="text/plain">
-                <div>
-                    <label for="nome">Nome:</label>
-                    <input type="text" id="nome" name="nome" required />
+            
+            <div class="row g-4" id="cards">
                 </div>
-                <div>
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required />
-                </div>
-                <div>
-                    <label for="mensagem">Mensagem:</label>
-                    <textarea id="mensagem" name="mensagem" rows="5" required></textarea>
-                </div>
-                <button type="submit">Enviar</button>
-            </form>
         </div>
     </section>
 
-    <!-- Rodapé -->
-    <footer>
+    <section id="depoimentos" class="py-5 text-center destaque-bg">
+        <div class="container">
+            <h2 class="fw-bold mb-4">Depoimentos</h2>
+            <div class="col-lg-8 mx-auto">
+                <blockquote class="fs-5 mb-4">“Cheguei em Uberaba sem conhecer nada. Esse site salvou meus primeiros dias!” &mdash; Larissa,
+                    UFTM</blockquote>
+                <blockquote class="fs-5">“É muito prático! Já achei restaurante, mercado e até salão aqui perto.” &mdash; Pedro, UNIUBE
+                </blockquote>
+            </div>
+        </div>
+    </section>
+
+    <section id="contato" class="py-5 contato-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <h2 class="fw-bold mb-3 text-center">Fale Conosco</h2>
+                    <p class="fs-5 mb-4 text-center">Tem dúvidas, sugestões ou precisa de ajuda? Nossa equipe está pronta para atender você.</p>
+                    
+                    <form class="form-contato" action="mailto:contato@meuguiau.com" method="POST" enctype="text-plain">
+                        <div class="mb-3">
+                            <label for="nome" class="form-label">Nome:</label>
+                            <input type="text" class="form-control" id="nome" name="nome" required />
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email:</label>
+                            <input type="email" class="form-control" id="email" name="email" required />
+                        </div>
+                        <div class="mb-3">
+                            <label for="mensagem" class="form-label">Mensagem:</label>
+                            <textarea class="form-control" id="mensagem" name="mensagem" rows="5" required></textarea>
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary btn-lg">Enviar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-4 text-center bg-light">
         &copy; 2025 Meu Guia U. Todos os direitos reservados.
     </footer>
 
-    <script src="script.js"></script>
-</body>
+    <div class="modal fade" id="confirmDeleteModal" tabindex="-1" aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="confirmDeleteModalLabel">Confirmar Exclusão de Conta</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            <p>Você tem certeza que deseja excluir sua conta?</p>
+            <p class="text-danger"><strong>Esta ação é permanente e irreversível.</strong></p>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-danger" id="confirm-delete-button">Sim, Excluir Minha Conta</button>
+            </div>
+        </div>
+        </div>
+    </div>
+    
+    <div class="modal fade" id="messageModal" tabindex="-1" aria-labelledby="messageModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="messageModalLabel">Aviso</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" id="messageModalBody">
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">OK</button>
+            </div>
+        </div>
+        </div>
+    </div>
 
+</body>
 </html>
