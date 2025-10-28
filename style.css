@@ -48,6 +48,7 @@ body {
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
   height: 100%;
+  position: relative; /* Necessário para posicionar o ícone */
 }
 
 .card-title {
@@ -224,13 +225,43 @@ blockquote {
 
 /* Estilo para item destrutivo no dropdown (Excluir Conta) */
 .profile-dropdown-menu .dropdown-item-danger {
-    color: #dc3545; /* Vermelho 'danger' do Bootstrap */
+  color: #841f2a;
 }
 .profile-dropdown-menu .dropdown-item-danger:hover {
-    color: #fff;
-    background-color: #dc3545;
+  color: #dc3545;
 }
 .profile-dropdown-menu .dropdown-item-danger:active {
-    color: #fff;
-    background-color: #b02a37;
+  color: #fff;
+  background-color: #b02a37;
+}
+
+/* ÍCONE DE FAVORITO */
+.favorite-icon {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 1.5rem; 
+  color: #0c1636;
+  cursor: pointer;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+/* "favoritado" */
+.favorite-icon.favorited {
+  color: #dc3545;
+  transform: scale(1.1); /* Efeito de "bater" */
+}
+
+.favorite-icon:hover {
+  color: #dc3545; 
+  transform: scale(1.2);
+}
+
+.texto-acao-excluir {
+  color: #0c1636 !important;
+}
+
+.botao-excluir {
+  color: #fff;
+  background-color: #be2e3e;
 }
