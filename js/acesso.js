@@ -23,6 +23,28 @@ function showMessage(message, type = 'danger') {
     messageContainer.innerHTML = alertHTML;
 }
 
+//traduzir os erros do firebase para o usuário
+function traduzirErroFirebase(errorCode) {
+    switch (errorCode) {
+        case 'auth/email-already-in-use':
+            return 'Este e-mail já está em uso. Tente fazer login ou use outro e-mail.';
+        case 'auth/weak-password':
+            return 'A senha deve ter pelo menos 6 caracteres.';
+        case 'auth/invalid-email':
+            return 'O formato do e-mail é inválido. Verifique e tente novamente.';
+        case 'auth/wrong-password':
+            return 'Senha incorreta. Tente novamente.';
+        case 'auth/user-not-found':
+            return 'Não encontramos uma conta com este e-mail. Verifique se digitou corretamente.';
+        case 'auth/missing-password':
+            return 'Por favor, insira sua senha.';
+        case 'auth/too-many-requests':
+            return 'Muitas tentativas de login falharam. Tente novamente mais tarde.';
+        default:
+            return 'Ocorreu um erro inesperado. Tente novamente.';
+    }
+}
+
 // Lógica de Cadastro no Firebase
 if (cadastroForm) {
     cadastroForm.addEventListener('submit', async (e) => {
@@ -49,7 +71,7 @@ if (cadastroForm) {
 
       } catch (error) {
         console.error("Erro ao cadastrar: ", error.message);
-        showMessage(error.message); // Mostra o erro do Firebase
+        showMessage(traduzirErroFirebase(error.code));
       }
     });
 }
@@ -73,7 +95,7 @@ if (loginForm) {
 
       } catch (error) {
         console.error("Erro ao logar: ", error.message);
-        showMessage(error.message); // Mostra o erro do Firebase
+        showMessage(traduzirErroFirebase(error.code));
       }
     });
 }
